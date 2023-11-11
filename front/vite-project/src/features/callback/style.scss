@@ -1,0 +1,15 @@
+.callback-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 601px) {
+  .callback-block {
+    justify-content: center;
+
+    &__img {
+      max-width: 300px;
+      margin-bottom: 32px;
+    }
+  }
+}

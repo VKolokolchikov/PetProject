@@ -1,0 +1,12 @@
+.discipline_block {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media (max-width: 975px){
+  .discipline_block {
+    justify-content: center;
+  }
+}

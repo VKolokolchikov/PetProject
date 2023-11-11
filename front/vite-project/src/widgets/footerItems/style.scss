@@ -1,0 +1,54 @@
+.footer-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 36px 0;
+}
+.footer-text {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 5px 0;
+}
+
+.footer-text, a.footer-text, .footer-text a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+a.footer-text:hover, .footer-text a:hover {
+  color: #FFADAD;
+}
+
+.company-info, .footer-contacts, .footer-nav-bar {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.company-info {
+  &__img {
+    width: 200px;
+    margin-bottom: 5px;
+  }
+}
+.footer-contacts {
+  &__list {
+    border-bottom: solid 1px white;
+    padding-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__links {
+    display: flex;
+    padding: 13px 0;
+  }
+  &__links img {
+    width: 25px;
+    margin-right: 16px;
+  }
+}
+p.sources-img:hover {
+  cursor: pointer;
+}

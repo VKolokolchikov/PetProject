@@ -1,0 +1,16 @@
+.base-content-block {
+  margin: 20px auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+
+  &__img {
+    width: 100%;
+    border-radius: 30px;
+    margin-bottom: 15px;
+  }
+  &__text {
+
+  }
+}

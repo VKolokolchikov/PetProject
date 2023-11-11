@@ -1,0 +1,13 @@
+.main-title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 59px;
+  margin: 59px auto 46px;
+}
+
+@media (max-width: 520px) {
+  .main-title{
+    font-size: 36px;
+  }
+}

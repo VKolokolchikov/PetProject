@@ -1,0 +1,19 @@
+.base-header-block {
+  width: 100%;
+  padding: 43px 60px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(97.67deg, #045CBD 0.87%, #D9ECFE 102.28%);
+
+  &__img {
+    width: 100px;
+  }
+  &__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+    color: #FFFFFF;
+  }
+}

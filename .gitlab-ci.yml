@@ -1,0 +1,68 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+
+.docker:
+  image: docker:20
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+
+build:
+  stage: build
+  tags:
+    - docker
+  extends:
+    - .docker
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest.nginx || true
+    - >  
+      docker build
+      --pull
+      --cache-from $CI_REGISTRY_IMAGE:latest.nginx
+      --tag $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA}.nginx
+      --tag $CI_REGISTRY_IMAGE:latest.nginx
+      ./nginx
+    - docker pull $CI_REGISTRY_IMAGE:latest.server || true
+    - >
+      docker build
+      --pull
+      --cache-from $CI_REGISTRY_IMAGE:latest.server
+      --build-arg ASPNETCORE_ENVIRONMENT="Prod"
+      --tag $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA}.server
+      --tag $CI_REGISTRY_IMAGE:latest.server
+      ./aspnetserver
+    - docker pull $CI_REGISTRY_IMAGE:latest.frontend || true
+    - >
+      docker build
+      --pull
+      --cache-from $CI_REGISTRY_IMAGE:latest.frontend      
+      --tag $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA}.frontend
+      --tag $CI_REGISTRY_IMAGE:latest.frontend
+      ./reactclient
+    - docker push --all-tags $CI_REGISTRY_IMAGE
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'main'
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+deploy:
+  image: alpine:latest
+  stage: deploy
+  tags:
+    - deployment
+  script:
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose pullT"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose down"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose up -d"
+  environment:
+    name: production
+    url: http://95.163.234.250
+  only:
+    - main

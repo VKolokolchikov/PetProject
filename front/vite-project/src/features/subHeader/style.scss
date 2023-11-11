@@ -1,0 +1,53 @@
+.sub-header {
+  padding-top: 48px;
+  position: relative;
+  width: 100%;
+
+  &__img {
+    position: absolute;
+    width: 350px;
+    right: 0;
+    bottom: 0;
+  }
+  &__info-block {
+    padding: 63px 30px 52px;
+    text-align: left;
+    color: white;
+    width: 100%;
+    background: linear-gradient(97.67deg, #045CBD 0.87%, rgba(7, 135, 249, 0.1) 102.28%);
+  }
+}
+
+.info-block {
+  &__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 49px;
+  }
+  &__quote {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 24px;
+    max-width: 436px;
+  }
+  &__author {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .sub-header {
+    &__img {
+      opacity: 25%;
+    }
+  }
+}
