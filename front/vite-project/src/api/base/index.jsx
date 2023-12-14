@@ -20,6 +20,11 @@ export default class BaseService {
         return response;
     }
 
+    static async getBySlug(url, slug) {
+        const response = await axios.get(url + slug)
+        return response;
+    }
+
     static sendData(url, data, contentType='application/json') {
         const response = axios.post(
             url, data,

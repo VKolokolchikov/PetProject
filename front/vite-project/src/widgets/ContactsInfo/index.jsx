@@ -1,14 +1,33 @@
 import React from 'react';
-import MapFrame from "../mapFrame/index.jsx";
-
-import "./style.scss"
 import {useEffect, useState} from "react";
 import {useFetching} from "../../hooks/useFetching.js";
 import ContactService from "../../api/contacts/index.jsx";
-import isEmpty from "../../utils/isEmtyChecher.js";
+import ContactsInfoItem from "../ContactsInfoItem/index.jsx";
+import MapFrame from "../mapFrame/index.jsx";
+
+import addressImg from "../../assets/address.png";
+import phoneImg from "../../assets/phone.png";
+import mailImg from "../../assets/mail.png";
+
+import "./style.scss"
+import BaseTitle from "../../shared/ui/baseTitle/index.jsx";
+import Loader from "../Loader/index.jsx";
 
 
 const ContactsInfo = () => {
+
+    const connectionMAP = {
+        1: {
+            title: "Номер телефона",
+            img: phoneImg,
+            keyLink: "tel",
+        },
+        2: {
+            title: "Почта",
+            img: mailImg,
+            keyLink: "mailto",
+        }
+    }
 
     const [contacts, setContacts] = useState({})
 
@@ -23,26 +42,29 @@ const ContactsInfo = () => {
 
 
     return (
-        <div className={"contacts-block"}>
-            {!isEmpty(contacts)
-                && <div className="contacts-block__info">
-                <h2>Адрес: <p>{contacts.address} </p></h2>
-                <h2> Телефон: {contacts.connections?.map((connection, index) =>
-                    { return connection.typeConnection === 1 && <p key={index}>
-                        <a href={`tel:${connection.text}`}>
-                                {connection.text}
-                            </a>
-                    </p>}
-                )}</h2>
-                <h2> Email: {contacts.connections?.map((connection, index) =>
-                    {return connection.typeConnection === 2 && <p key={index}><a href={`mailto:${connection.text}`}>
-                            {connection.text}
-                        </a></p>}
-                )}</h2>
-                <h2> Время работа: <p>{contacts.workTime}</p></h2>
-            </div>
+        <div >
+            {!isPostsLoading
+                ? <div>
+                    <BaseTitle text={`Время работы: ${contacts.workTime}`} />
+                        <div className="contacts-block">
+                            <ContactsInfoItem title={"Адрес"} img={addressImg} data={contacts.address}/>
+                            {contacts.connections?.map((connection, index) =>
+                                    <ContactsInfoItem
+                                        title={connectionMAP[connection.typeConnection].title}
+                                        img={connectionMAP[connection.typeConnection].img}
+                                        data={
+                                        <a href={
+                                            `${connectionMAP[connection.typeConnection].keyLink}:${connection.text}`
+                                        }>{connection.text}
+                                        </a>
+                                    }
+                                    />
+                            )}
+                        </div>
+                    <MapFrame title={"Мы на карте"} frame={contacts.geoPosition}/>
+                </div>
+                : <Loader />
             }
-            <MapFrame />
         </div>
     );
 };

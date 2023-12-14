@@ -1,0 +1,13 @@
+.catalog-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.detail {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover{
+    color: inherit;
+  }
+}

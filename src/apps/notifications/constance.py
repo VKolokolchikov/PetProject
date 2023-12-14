@@ -29,3 +29,28 @@ class StaffRequestType:
         (CALL_BACK, TITLES[CALL_BACK]),
         (CALL_MASTER, TITLES[CALL_MASTER])
     )
+
+
+class NotificationsTypes:
+    CALL_BACK = 'callback'
+    CALL_MASTER = 'call_master'
+
+    TITLES = {
+        CALL_BACK: 'Заявка на звонок',
+        CALL_MASTER: 'Заявка на вызов мастера',
+    }
+
+    CHOICE = (
+        (CALL_BACK, TITLES[CALL_BACK]),
+        (CALL_MASTER, TITLES[CALL_MASTER])
+    )
+
+
+class Recipients:
+    MANAGERS = "managers"
+    ADMINS = "admins"
+
+
+class CHANNELS:
+    TELEGRAM = 1
+

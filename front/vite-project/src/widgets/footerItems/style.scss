@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 36px 0;
+  padding: 36px 10px;
 }
 .footer-text {
   font-family: 'Montserrat', sans-serif;
@@ -15,11 +15,11 @@
 
 .footer-text, a.footer-text, .footer-text a {
   text-decoration: none;
-  color: #FFFFFF;
+  color: black;
 }
 
 a.footer-text:hover, .footer-text a:hover {
-  color: #FFADAD;
+  color: #9A1F1F;
 }
 
 .company-info, .footer-contacts, .footer-nav-bar {
@@ -29,13 +29,13 @@ a.footer-text:hover, .footer-text a:hover {
 }
 .company-info {
   &__img {
-    width: 200px;
+    width: 278px;
     margin-bottom: 5px;
   }
 }
 .footer-contacts {
   &__list {
-    border-bottom: solid 1px white;
+    border-bottom: solid 1px black;
     padding-bottom: 18px;
     display: flex;
     flex-direction: column;
@@ -45,10 +45,21 @@ a.footer-text:hover, .footer-text a:hover {
     padding: 13px 0;
   }
   &__links img {
-    width: 25px;
+    width: 50px;
     margin-right: 16px;
   }
 }
 p.sources-img:hover {
   cursor: pointer;
+}
+
+.footer-box-nav-bar {
+  width: 60%;
+}
+
+@media (max-width: 720px) {
+  .footer-box-nav-bar {
+    width: 100%;
+    flex-direction: row-reverse;
+  }
 }

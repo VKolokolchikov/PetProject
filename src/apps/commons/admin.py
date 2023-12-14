@@ -17,6 +17,10 @@ class AddPermissionLogoInline(AddPermissionImageInline):
     target_field = 'logo'
 
 
+class AddPermissionBannerInline(AddPermissionImageInline):
+    target_field = 'banner'
+
+
 class AddPermissionFileInline(AddPermissionImageInline):
     target_field = 'file'
 
@@ -30,7 +34,7 @@ class SingleImageInline(GenericTabularInline, AddPermissionImageInline):
     verbose_name_plural = 'Изображение\фото'
 
 
-class SingleBannerInline(SingleImageInline):
+class SingleBannerInline(SingleImageInline, AddPermissionBannerInline):
     model = BannerModel
     verbose_name_plural = 'Баннер'
 

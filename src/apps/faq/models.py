@@ -9,11 +9,11 @@ class FAQ(models.Model):
 
     title = models.CharField(verbose_name='Заголовок', max_length=155)
     answer = models.CharField(verbose_name='Ответ/Описание', max_length=255)
-    faq_type = models.CharField(verbose_name='Тип подсказки', max_length=64, choices=FAQTypes)
+    faq_type = models.CharField(verbose_name='Тип подсказки', max_length=64, choices=FAQTypes.CHOICES)
 
     image = GenericRelation(
         ImageModel,
-        related_name='image_disciplines',
+        related_name='image_faq',
         verbose_name='Изображения',
         null=True
     )

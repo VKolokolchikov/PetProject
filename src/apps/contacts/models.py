@@ -4,6 +4,21 @@ from django.contrib.contenttypes.fields import GenericRelation
 from apps.commons.models import ImageModel
 
 
+class AboutMe(models.Model):
+    class Meta:
+        verbose_name = 'Раздел о нас'
+        verbose_name_plural = 'О нас'
+
+    describe = models.TextField(verbose_name='Описание', )
+    youtube_id = models.CharField(verbose_name='ID видео на YoTube', max_length=120, blank=True)
+    image = GenericRelation(
+        ImageModel,
+        related_name='image_documents',
+        verbose_name='Лицензии и документы',
+        null=True
+    )
+
+
 class Contacts(models.Model):
     class Meta:
         verbose_name = 'Контакт'
@@ -23,7 +38,7 @@ class Contacts(models.Model):
 class Delivery(models.Model):
     class Meta:
         verbose_name = 'Доставка'
-        verbose_name_plural = 'Контакты'
+        verbose_name_plural = 'Данные по доставке'
 
     about_geo = models.CharField(verbose_name='Заголовок для карты', max_length=300)
     geo_position = models.CharField(verbose_name='Карта', max_length=700)
@@ -55,6 +70,9 @@ class SocialLinks(models.Model):
         verbose_name = 'Социальная сеть'
         verbose_name_plural = 'Социальные сети'
 
+    name = models.CharField(verbose_name='Название', blank=True, max_length=75)
+    link = models.CharField(verbose_name='Ссылка', max_length=1024)
+
     contact = models.ForeignKey(
         Contacts,
         on_delete=models.CASCADE,
@@ -67,4 +85,6 @@ class SocialLinks(models.Model):
         verbose_name='Изображение',
         null=True
     )
-    link = models.CharField(verbose_name='Ссылка', max_length=1024)
+
+    def __str__(self):
+        return self.name

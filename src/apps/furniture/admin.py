@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from apps.commons.admin import ManyImageInline, SingleBannerInline, SingleLogoInline
-from apps.furniture.models import Furniture
+from apps.furniture.models import Furniture, FurnitureTypes
 
 
 class ImageInline(ManyImageInline):
@@ -20,19 +20,13 @@ class BannerInLine(SingleBannerInline):
     verbose_name_plural = "Баннер"
 
 
-@admin.register(Furniture)
-class FurnitureAdmin(admin.ModelAdmin):
+@admin.register(FurnitureTypes)
+class FurnitureTypesAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'id', 'title',)
-    list_display_links = ('get_image', 'id', 'title')
     prepopulated_fields = {"slug": ["title"]}
     readonly_fields = ('get_image',)
 
-    fieldsets = (
-        ('Для описание раздела', {'fields': ('title', 'slug')}),
-        ('Описание', {'fields': ('describe', 'actual')}),
-    )
-
-    inlines = [ImageInline, LogoInline, BannerInLine]
+    inlines = [LogoInline, BannerInLine]
 
     def get_image(self, obj):
         if logo := obj.logo.get_current_file_url():
@@ -40,3 +34,16 @@ class FurnitureAdmin(admin.ModelAdmin):
         return
 
     get_image.short_description = 'Лого'
+
+
+@admin.register(Furniture)
+class FurnitureAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    list_display_links = ('title',)
+
+    fieldsets = (
+        ('Для описание раздела', {'fields': ('title', 'furniture_type')}),
+        ('Описание', {'fields': ('describe', 'is_actual')}),
+    )
+
+    inlines = [ImageInline]

@@ -1,0 +1,33 @@
+.contacts-info-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+  background: #EBE5E5;
+  padding: 50px 80px;
+
+  margin: 15px auto;
+
+  &__img {
+    width: 150px;
+  }
+  &__title, &__data {
+    max-width: 220px;
+    font-family: "Merriweather", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+  &__title {
+    margin: 30px auto;
+    color: #9A1F1F;
+  }
+  &__data > a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

@@ -1,0 +1,20 @@
+.nav-link {
+  color: black !important;
+}
+
+.nav-dropbox-link {
+  display: block;
+}
+.active-link {
+  border-bottom: #9A1F1F solid 5px;
+}
+
+@media (max-width: 520px) {
+  .navbar-nav {
+    height: 100vh;
+  }
+  .nav-dropbox-link {
+      display: flex !important;
+      justify-content: center !important;
+  }
+}

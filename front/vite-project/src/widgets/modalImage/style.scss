@@ -1,0 +1,11 @@
+.modal {
+  --bs-modal-margin: 2rem;
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    --bs-modal-width: 80%;
+    max-width: 2000px;
+}
+}
+

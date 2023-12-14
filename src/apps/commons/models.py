@@ -53,15 +53,15 @@ class FileInterfaceModel(DateTimeMixin):
 
 
 class ImageModel(FileInterfaceModel):
-    file = models.FileField(verbose_name='Изображение', validators=IMAGE_VALIDATORS, upload_to=set_upload_path)
+    file = models.FileField(verbose_name='Изображение', validators=[], upload_to=set_upload_path)
 
 
 class LogoModel(FileInterfaceModel):
-    file = models.FileField(verbose_name='Логотип', validators=IMAGE_VALIDATORS, upload_to=set_upload_path)
+    file = models.FileField(verbose_name='Логотип', validators=[], upload_to=set_upload_path)
 
 
 class BannerModel(FileInterfaceModel):
-    file = models.FileField(verbose_name='Баннер', validators=IMAGE_VALIDATORS, upload_to=set_upload_path)
+    file = models.FileField(verbose_name='Баннер', validators=[], upload_to=set_upload_path)
 
 
 class FileModel(FileInterfaceModel):

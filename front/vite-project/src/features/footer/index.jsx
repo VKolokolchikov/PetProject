@@ -5,7 +5,7 @@ import FooterItems from "../../widgets/footerItems/index.jsx";
 
 const Footer = () => {
     return (
-        <footer className={"prime-bg"}>
+        <footer>
             <div className={"main-container"}>
                 <FooterItems />
             </div>

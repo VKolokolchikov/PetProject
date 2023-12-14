@@ -17,12 +17,27 @@ services:
     depends_on:
       - db
 
+  huey:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    command: python3 manage.py run_huey
+    volumes:
+      - ./src/:/usr/src/app/
+    env_file:
+      - src/.env.prod
+    depends_on:
+      - db
+
   db:
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env.db
+
+  redis:
+    image: redis:latest
 
   nginx:
     build: .

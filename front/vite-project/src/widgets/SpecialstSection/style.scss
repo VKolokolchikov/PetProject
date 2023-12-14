@@ -1,0 +1,10 @@
+.specialist-block {
+  flex-wrap: wrap;
+  padding: 20px 30px;
+
+  &__img {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+  }
+}

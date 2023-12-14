@@ -1,41 +1,56 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import BaseChanger from "../baseChanger/index.jsx";
-import ProofSection from "../../../widgets/proofSection/index.jsx";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Navigation } from 'swiper/modules';
+
+import ModaImage from "../../../widgets/modalImage/index.jsx";
 import FeedbackSection from "../../../widgets/feedbackSection/index.jsx";
+import FurniturePhotoSection from "../../../widgets/FurniturePhotoSection/index.jsx";
 
 import './style.scss'
 
-const BaseSlider = ({items}) => {
-    const itemsOnPage = items.items
 
-    const pickSection = {
-        proof: ProofSection,
-        feedback: FeedbackSection,
+const BaseSlider = ({items, section, toFullScreen=false}) => {
+    const [modalShow, setModalShow] = React.useState(false);
+
+    function openInModalForm(e) {
+        console.log(e);
+        setModalShow(true)
     }
 
-
-    const [page, setPage] = useState(0);
-    const [item, setItem ] = useState(itemsOnPage[page])
-    const [count, _] = useState(items.count)
-    const [section, __] = useState(items.section)
-
-
-
-    useEffect(() => {
-        setItem(itemsOnPage[page])
-    },[page]);
-
+    const pickSection = {
+        feedback: FeedbackSection,
+        photo: FurniturePhotoSection,
+    }
 
     return (
-        <div>
+        <div className={"slider-block main-background"}>
+            <ModaImage show={modalShow} onHide={() => setModalShow(false)}>
+                <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+                {items?.map((item, index)  =>
+                    <SwiperSlide
+                        key={index}
+                    >
+                        {React.createElement(pickSection[section], {item:item})}
+                    </SwiperSlide>
+                )}
+            </Swiper>
+            </ModaImage>
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+                {items?.map((item, index)  =>
+                    <SwiperSlide
+                        key={index}
+                    >
+                        {React.createElement(pickSection[section], {item:item, onClick: openInModalForm})}
+                    </SwiperSlide>
+                )}
+            </Swiper>
 
-            {React.createElement(pickSection[items.section], {item:item})}
-            <div className="changer-block">
-                {count > 1 && [...Array(count).keys()].map((x, i) =>
-                <BaseChanger key={i} setPage={setPage} page={page} section={section} number={i}/>
-            )}
-            </div>
         </div>
     );
 };

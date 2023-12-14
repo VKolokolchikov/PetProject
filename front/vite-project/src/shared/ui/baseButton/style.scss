@@ -5,29 +5,13 @@
   border: none;
 }
 
-.join-to-class {
-  padding: 14px 82px;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
-}
-
-.callback-btn {
-  padding: 23px 98px;
+.callback-btn, .specialist-btn {
   width: 100%;
+  padding: 33px 127px;
   margin-top: 16px;
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-  text-align: center;
-
   color: #FFFFFF;
 }
+
 
 @media (max-width: 520px) {
   .base-btn {

@@ -32,7 +32,10 @@ const Feedback = ({items=null, params}) => {
     return (
         <div>
             {comments.count > 0
-                ? <div id={'feedback_id'}> <BaseTitle text={'Отзывы'}/> <BaseSlider items={comments} /></div>
+                ?
+                <div>
+                    <BaseTitle text={'Отзывы'}/> <BaseSlider items={comments.items}  section={"feedback"} />
+                </div>
                 : ''
             }
         </div>

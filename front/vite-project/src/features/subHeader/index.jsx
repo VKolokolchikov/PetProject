@@ -1,20 +1,17 @@
 import React from 'react';
 
 import './style.scss';
+import BaseTitle from "../../shared/ui/baseTitle/index.jsx";
 
-const SubHeader = ({data}) => {
-    const {title, quote, author, img} = data
+const SubHeader = ({text, img}) => {
     return (
-        <div className={"sub-header"}>
+        <div className={"sub-header"} style={{backgroundImage: `url(${img})`}}>
             <div className="sub-header__info-block">
-                <h1 className="info-block__title">{title}</h1>
-                <h3 className="info-block__quote">{quote}</h3>
-                <h2 className="info-block__author">{author}</h2>
+                <h1>{text}</h1>
             </div>
-            <img
-                style={{width: !quote & !author ? '250px' : '350px'}}
-                className={"sub-header__img"}
-                src={img} alt={title}/>
+            {/*<img*/}
+            {/*    className={"sub-header__img"}*/}
+            {/*    src={img} alt={text}/>*/}
         </div>
     );
 };

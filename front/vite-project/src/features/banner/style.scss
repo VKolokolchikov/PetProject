@@ -1,87 +1,33 @@
 .banner-box {
   width: 100%;
-  height: 750px;
+  height: 941px;
   padding: 22px 52px;
   background-image: url("../../assets/banner-img.png");
+  background-size: contain;
 
-  &__items {
-    float: right;
-    width: 493px;
-  }
-  &__title-block, &__info-block {
-    border-radius: 30px;
-  }
-  &__title-block {
-    display: flex;
-    margin-bottom: 32px;
-  }
-  &__info-block {
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    align-items: center;
-    background-color:rgba(255, 255, 255, 0.9);
-  }
-}
-
-//.compony-info {
-//  margin-left: 16px;
-//  display: flex;
-//  flex-direction: column;
-//  justify-content: center;
-//  font-family: 'Montserrat', sans-serif;
-//  color: white;
-//
-//  &__name {
-//    margin: 0 auto;
-//    font-weight: 500;
-//    font-size: 32px;
-//    line-height: 39px;
-//  }
-//  &__describe {
-//    text-align: left;
-//    font-weight: 500;
-//    font-size: 20px;
-//    line-height: 24px;
-//  }
-//}
-
-.info-box {
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 24px;
-  line-height: 29px;
-
-  &__describe {
-    margin-bottom: 32px;
-  }
-  &__join {
-    padding-top: 21px;
-    border-top: solid 1px black;
-  }
-  &__join p {
-    margin-bottom: 0;
-  }
-}
-.join-price {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  &__img {
+    width: 500px;
+  }
 }
-
+@media (max-width: 1300px) {
+  .banner-box {
+    padding: 0;
+    background-size: cover;
+  }
+}
 
 @media (max-width: 601px) {
   .banner-box {
-    padding: 0;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    height: 80vh;
+    &__img {
+      width: 300px;
+    }
   }
 }
 @media (max-width: 520px) {

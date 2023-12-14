@@ -3,51 +3,81 @@ import {Container, Navbar, Nav, NavDropdown} from "react-bootstrap";
 
 import logo from '../../assets/logo.png'
 import {useFetching} from "../../hooks/useFetching.js";
-import DisciplinesService from "../../api/disciplines/index.jsx";
+import FurnitureService from "../../api/furniture/index.jsx";
+
+import './style.scss'
+import {Link, useLocation} from "react-router-dom";
 
 
 const NavigationBar = () => {
-  const [disciplines, setDisciplines] = useState([])
+    const [furniture, setFurniture] = useState([])
+    const location = useLocation()
+    console.log(location.pathname)
 
-  const [fetchDisciplines, isPostsLoading, postError] = useFetching(async () => {
-            const response = await DisciplinesService.getAll();
-            setDisciplines(prevState => ([...response.data.results]))
-        })
-        useEffect(() => {
-            fetchDisciplines()
-        }, []
-        )
+    const [fetchFurniture, isPostsLoading, postError] = useFetching(async () => {
+                const response = await FurnitureService.getAllTypes();
+                console.log(response)
+                setFurniture(prevState => ([...response.data.results]))
+            })
+            useEffect(() => {
+                fetchFurniture()
+            }, []
+            )
 
 
 
     return (
         <Navbar style={{zIndex:1000}} expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">
+        <Navbar.Brand as={Link} to="/">
             <img src={logo} width="198px" alt="logo"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
-            className="me-auto my-2 my-lg-0"
+            className="me-auto justify-content-around flex-grow-1 my-2 my-lg-0"
             navbarScroll
           >
-            <Nav.Link style={{margin: "0 16px"}} href="/#feedback_id">Отзывы</Nav.Link>
-            <Nav.Link style={{margin: "0 16px"}} href="/teachers/">Преподаватели</Nav.Link>
-            <NavDropdown style={{margin: "0 16px"}} title="Направления" id="navbarScrollingDropdown">
-                {disciplines
-                    && disciplines.map(discipline =>
+              <NavDropdown
+                  className={`base-header ${location.pathname.includes("/catalog") && "active-link"}`}
+                  style={{margin: "0 16px"}}
+                  title="Каталог"
+                  id="navbarScrollingDropdown"
+              >
+                {furniture
+                    && furniture?.map(furnitureItem =>
                         <NavDropdown.Item
-                            key={discipline.id}
-                            href={`/disciplines/${discipline.id}`}
+                            key={furnitureItem.slug}
+                            as={Link} to={{pathname: `/catalog/${furnitureItem.slug}`}}
+                            className={"text-black base-header nav-dropbox-link"}
                         >
-                            {discipline.title}
+                            {furnitureItem.title}
+
                         </NavDropdown.Item>
                     )
                 }
             </NavDropdown>
-            <Nav.Link style={{margin: "0 16px"}} href="/online-education/">Онлайн обучение</Nav.Link>
-            <Nav.Link style={{margin: "0 16px"}} href="/contacts/">Контакты</Nav.Link>
+            <Nav.Link
+                className={`base-header ${location.pathname.includes("/about") && "active-link"}`}
+                style={{margin: "0 16px"}}
+                as={Link} to="/about"
+            >
+                О нас
+            </Nav.Link>
+            <Nav.Link
+                className={`base-header ${location.pathname.includes("/delivery") && "active-link"}`}
+                style={{margin: "0 16px"}}
+                as={Link} to="/delivery"
+            >
+                Доставка
+            </Nav.Link>
+            <Nav.Link
+                className={`base-header ${location.pathname.includes("/contacts") && "active-link"}`}
+                style={{margin: "0 16px"}}
+                as={Link} to="/contacts"
+            >
+                Контакты
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

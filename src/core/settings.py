@@ -10,13 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import pathlib
 from pathlib import Path
 
+import environ
 from core.ckeditor_conf import CKEDITOR_CONF
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env(str(pathlib.Path(BASE_DIR, ".env")))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -29,6 +32,7 @@ DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
+AUTH_USER_MODEL = 'users.SystemUser'
 
 # Application definition
 
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'huey.contrib.djhuey',
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
@@ -47,10 +52,11 @@ INSTALLED_APPS = [
     'apps.commons',
     'apps.comments',
     'apps.contacts',
+    'apps.faq',
     'apps.furniture',
     'apps.notifications',
     'apps.documents',
-
+    'apps.users'
 ]
 
 MIDDLEWARE = [
@@ -145,6 +151,25 @@ REST_FRAMEWORK = {
         # Any other parsers
     ),
 }
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '')
+
+
+REDIS_HOST = os.getenv('REDIS_HOST', '127.0.0.1')
+REDIS_PORT = os.getenv('REDIS_PORT', 6380)
+
+HUEY = {
+    'name': 'default',
+    'immediate': False,
+    'connection': {
+        'host': os.getenv('HUEY_REDIS_HOST', REDIS_HOST),
+        'port': os.getenv('HUEY_REDIS_PORT', REDIS_PORT),
+        'db': os.getenv('HUEY_REDIS_DB', 5)
+    },
+    'consumer': {
+        'workers': int(os.getenv('HUEY_WORKERS_COUNT', os.cpu_count() * 2 + 1))
+    },
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

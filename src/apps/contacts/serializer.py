@@ -1,14 +1,25 @@
 from rest_framework import serializers
 
-from apps.contacts.models import Contacts, Connection, Delivery, SocialLinks
+from apps.contacts.models import AboutMe, Contacts, Connection, Delivery, SocialLinks
 from apps.commons.serializer import ImageMixinSerializer
+
+
+class AboutMeSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = AboutMe
+        fields = ('describe', 'youtube_id', 'image',)
+
+    def get_image(self, obj):
+        return [file.url for file in obj.image.all()]
 
 
 class SocialLinksSerializer(ImageMixinSerializer):
 
     class Meta:
         model = SocialLinks
-        fields = ('link', 'image')
+        fields = ('link', 'image',)
 
 
 class ConnectionSerializer(serializers.ModelSerializer):
@@ -28,6 +39,7 @@ class ContactsSerializer(serializers.ModelSerializer):
             'social_links',
             'connections',
             'address',
+            'geo_position',
             'work_time'
         )
 

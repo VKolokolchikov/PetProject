@@ -3,7 +3,8 @@ import React from 'react';
 import ContactService from "../../api/contacts/index.jsx";
 import {useFetching} from "../../hooks/useFetching.js";
 import {useEffect, useState} from "react";
-import isEmpty from "../../utils/isEmtyChecher.js";
+import isEmpty from "../../utils/isEmtyChecker.js";
+import BaseImg from "../../shared/ui/baseImg/index.jsx";
 
 
 const FooterContacts = () => {
@@ -23,7 +24,6 @@ const FooterContacts = () => {
                 ? <div>
                 <div className={"footer-contacts__list"}>
                 <p className={"footer-text"}> Адрес: {contacts.address} </p>
-                <a target={"_blank"} href={"https://yandex.ru/maps/-/CCUkZMV~DA"} className={"footer-text"}> Посмотреть на карте</a>
                 {contacts.connections?.map((connection, index) => {
                     switch (connection.typeConnection) {
                       case 1:
@@ -43,7 +43,7 @@ const FooterContacts = () => {
             </div>
                 <div className={"footer-contacts__links"}>
                 {contacts.socialLinks?.map((socialLink, index)  =>
-                <a key={index} href={socialLink.link}><img src={socialLink.image} alt={socialLink.name}/></a>
+                <a key={index} href={socialLink.link}><BaseImg src={socialLink.image} alt={socialLink.name}/></a>
                 )}
             </div>
                 </div>

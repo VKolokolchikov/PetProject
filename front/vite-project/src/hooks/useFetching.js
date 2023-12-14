@@ -10,7 +10,7 @@ export const useFetching = (callback) => {
             await callback(...args)
         } catch (e) {
             if (e.response?.status === 404) {
-                window.location.replace('/not-found/')
+                // window.location.replace('/not-found/')
             }
             setError(e.message);
         } finally {

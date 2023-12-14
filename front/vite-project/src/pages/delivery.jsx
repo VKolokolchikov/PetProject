@@ -1,0 +1,19 @@
+import React from 'react';
+import SubHeader from "../features/subHeader/index.jsx";
+
+import deliveryImg from "../assets/delivery.png"
+import DeliveryBlock from "../features/delivery";
+import Callback from "../features/callback/index.jsx";
+import Specialist from "../features/specialist/index.jsx";
+const DeliveryPage = () => {
+    return (
+        <div>
+            <SubHeader img={deliveryImg} text={"Доставка"}/>
+            <DeliveryBlock />
+            <Callback />
+            <Specialist />
+        </div>
+    );
+};
+
+export default DeliveryPage;

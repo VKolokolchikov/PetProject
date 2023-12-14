@@ -1,6 +1,15 @@
-.changer-block {
-  display: flex;
-  justify-content: center;
+.swiper-button-prev, .swiper-button-next {
+  color: #646464;
+}
+.swiper-wrapper {
   align-items: center;
-  margin: 16px auto;
+}
+.slider-block {
+  margin: 32px auto;
+}
+
+@media (max-width: 720px) {
+  .swiper-button-prev:after, .swiper-button-next:after {
+    font-size: 20px;
+}
 }

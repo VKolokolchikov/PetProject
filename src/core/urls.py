@@ -16,14 +16,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
-urlpatterns = [
+
+system_urls = [
     path('admin/', admin.site.urls),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+]
+
+api_urls = [
     path('api/', include('apps.comments.urls', namespace='api-comments')),
-    path('api/', include('apps.disciplines.urls', namespace='api-disciplines')),
-    path('api/', include('apps.users.urls', namespace='api-users')),
+    path('api/', include('apps.furniture.urls', namespace='api-furniture')),
     path('api/', include('apps.contacts.urls', namespace='api-contacts')),
     path('api/', include('apps.documents.urls', namespace='api-documents')),
     path('api/', include('apps.notifications.urls', namespace='api-notifications')),
+    path('api/', include('apps.faq.urls', namespace='api-faq')),
+
+]
+
+if settings.DEBUG:
+    system_urls.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+
+
+urlpatterns = [
+    *system_urls,
+    *api_urls
 ]

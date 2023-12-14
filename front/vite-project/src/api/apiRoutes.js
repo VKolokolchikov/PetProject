@@ -1,18 +1,27 @@
 let BASE_URL;
+let API_URL;
 
+console.log(window.location.origin)
 if (window.location.origin === "http://localhost:5173") {
-    BASE_URL = import.meta.env.BASE_URL;
+    BASE_URL = import.meta.env.VITE_REACT_APP_URL_BASE;
 } else {
-    BASE_URL = window.location.origin + '/api/';
+    BASE_URL = window.location.origin;
 }
 
+API_URL = BASE_URL + '/api/'
+console.log("!!!!!" + API_URL)
 const URLs = {
-    comments: BASE_URL + import.meta.env.VITE_REACT_APP_URL_COMMENTS,
-    disciplines: BASE_URL + import.meta.env.VITE_REACT_APP_URL_DISCIPLINES,
-    teachers: BASE_URL + import.meta.env.VITE_REACT_APP_URL_TEACHERS,
-    contacts: BASE_URL + import.meta.env.VITE_REACT_APP_URL_CONTACTS,
-    documents: BASE_URL + import.meta.env.VITE_REACT_APP_URL_DOCUMENTS,
-    notifications: BASE_URL + import.meta.env.VITE_REACT_APP_URL_NOTIFICATIONS,
+    comments: API_URL + import.meta.env.VITE_REACT_APP_URL_COMMENTS,
+    furniture: API_URL + import.meta.env.VITE_REACT_APP_URL_CATALOG,
+    faq: API_URL + import.meta.env.VITE_REACT_APP_URL_FAQ,
+    teachers: API_URL + import.meta.env.VITE_REACT_APP_URL_TEACHERS,
+    contacts: API_URL + import.meta.env.VITE_REACT_APP_URL_CONTACTS,
+    documents: API_URL + import.meta.env.VITE_REACT_APP_URL_DOCUMENTS,
+    notifications: API_URL + import.meta.env.VITE_REACT_APP_URL_NOTIFICATIONS,
+    furnitureTypes: API_URL + import.meta.env.VITE_REACT_APP_URL_CATALOG,
+    delivery: API_URL + import.meta.env.VITE_REACT_APP_URL_DELIVERY,
+    about: API_URL + import.meta.env.VITE_REACT_APP_URL_ABOUT,
 };
 
 export default URLs;
+export {BASE_URL};

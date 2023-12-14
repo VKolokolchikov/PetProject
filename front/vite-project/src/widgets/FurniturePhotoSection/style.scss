@@ -1,0 +1,14 @@
+.furniture-photo {
+  padding: 50px 80px;
+  &__img {
+      width: 100%;
+      max-width: 2000px;
+  }
+
+}
+
+@media (max-width: 720px) {
+  .furniture-photo {
+    padding: 10px 0px;
+  }
+}

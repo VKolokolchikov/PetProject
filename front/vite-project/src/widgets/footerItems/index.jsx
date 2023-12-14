@@ -9,8 +9,11 @@ const FooterItems = () => {
     return (
         <div className={"footer-box"}>
             <CompanyInfo/>
-            <FooterNavBar/>
-            <FooterContacts/>
+            <div className={"footer-box footer-box-nav-bar"}>
+                <FooterNavBar/>
+                <FooterContacts/>
+            </div>
+
         </div>
     );
 };

@@ -36,9 +36,28 @@
   font-weight: 600;
 }
 
-p {
-  font-family: 'Georgia', sans-serif;
-  font-size: 24px;
+@font-face {
+  font-family: 'Merriweather';
+  src: url("./fonts/Merriweather-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Merriweather-Regular';
+  src: url("./fonts/Merriweather-Regular.ttf");
+  font-weight: 400;
+
+}
+
+p, .base-text {
+  font-family: 'Merriweather-Regular', sans-serif;
+  font-size: 32px;
+}
+
+.base-header {
+  font-family: 'Merriweather', sans-serif;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .title-block-text {
@@ -65,5 +84,20 @@ p {
   background-color: #045CBD;
 }
 .additional-bg {
-  background-color: #FFADAD;
+  background-color: #9A1F1F;
+}
+.main-background {
+  background: #FBFAFA;
+  box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+@media (max-width: 540px) {
+  .base-header {
+    font-size: 18px;
+  }
+
+  p, .base-text{
+    font-size: 12px;
+  }
 }

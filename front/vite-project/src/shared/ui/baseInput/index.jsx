@@ -2,12 +2,12 @@ import React from 'react';
 
 import './style.scss'
 
-const BaseInput = ({classesBtn, text, styleInput, ...props}) => {
+const BaseInput = ({classesInput, text, styleInput, ...props}) => {
 
     return (
         <div>
             <input
-                className={classesBtn ? classesBtn.join(' ') : 'base-input'}
+                className={classesInput ? classesInput.join(' ') : 'base-input'}
                 style={{...styleInput}}
                 {...props}
                 />
