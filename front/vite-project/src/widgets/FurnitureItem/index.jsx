@@ -12,9 +12,9 @@ const FurnitureItem = ({item}) => {
 
     return (
         <div className={"main-background furniture-item-block"}>
-            <div className="furniture-item-block__img">
+            <div className="furniture-item-block__content">
                 <BaseImg src={item.image}/>
-                <BaseTitle text={item.title}/>
+                <h1>{item.title}</h1>
             </div>
             <div className={"fade-block-link"}>
                 <Link to={`/catalog/${slug}/${item.id}/`}>

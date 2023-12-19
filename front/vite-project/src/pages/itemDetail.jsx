@@ -32,10 +32,12 @@ const DetailBlock = ({slug=null, id=null}) => {
         <div>
             {!isLoadingItem  ?
                 <div>
-                    <FurnitureDetail item={itemData}/>
-                    <Feedback params={{furniture_id: id}}/>
-                    <Callback />
-                    <Specialist />
+                    <div className="content-block">
+                        <FurnitureDetail item={itemData}/>
+                        <Feedback params={{furniture_id: id}}/>
+                        <Callback />
+                        <Specialist />
+                    </div>
                 </div>
                 : <Loader />
             }

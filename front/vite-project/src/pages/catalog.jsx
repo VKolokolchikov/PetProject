@@ -32,8 +32,8 @@ const CatalogPage = () => {
                  <div>
                      <BaseHeader img={furnitureData.banner} title={furnitureData.title}/>
                      {!id
-                         ? <Furniture items={furnitureData.items}/>
-                         : <DetailBlock slug={slug} id={id}/>
+                         ? <div className="content-block"><Furniture items={furnitureData.items}/></div>
+                         : <div className="content-block"><DetailBlock slug={slug} id={id}/></div>
                      }
                  </div>
                 : <Loader/>

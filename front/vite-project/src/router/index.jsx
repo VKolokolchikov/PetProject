@@ -8,13 +8,14 @@ import CatalogPage from "../pages/catalog.jsx";
 import DeliveryPage from "../pages/delivery";
 import ContactsPage from "../pages/contacts.jsx";
 import AboutUsPage from "../pages/about";
+import BaseCatalogPage from "../pages/base-catalog.jsx";
 
 
 const AppRouter = () => {
 
     return (
         <Routes>
-
+            <Route exact path={"/catalog/"} element={<BaseCatalogPage />} />
             <Route exact path={"/catalog/:slug/"} element={<CatalogPage />} />
             <Route exact path={"/catalog/:slug/:id"} element={<CatalogPage />} />
             <Route path={"/delivery/"} element={<DeliveryPage/>} />

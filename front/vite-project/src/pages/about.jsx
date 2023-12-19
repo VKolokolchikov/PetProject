@@ -9,7 +9,9 @@ const AboutUsPage = () => {
     return (
         <div>
             <SubHeader text={"Информация о нас"} img={baseBannerImg}/>
-            <AboutUs/>
+            <div className="content-block">
+                <AboutUs/>
+            </div>
         </div>
     );
 };

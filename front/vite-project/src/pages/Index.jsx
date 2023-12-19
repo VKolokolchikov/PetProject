@@ -12,11 +12,13 @@ const IndexPage = () => {
     return (
         <div>
             <Banner/>
-            <ProofSlider />
-            <Catalog/>
-            <Callback/>
-            <Questions/>
-            <Specialist/>
+            <div className="content-block">
+                <ProofSlider />
+                <Catalog/>
+                <Callback/>
+                <Questions/>
+                <Specialist/>
+            </div>
         </div>
     );
 };

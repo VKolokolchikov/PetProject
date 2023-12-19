@@ -96,6 +96,9 @@ p, .base-text {
   .base-header {
     font-size: 18px;
   }
+  .content-block {
+  padding: 0px 15px;
+}
 
   p, .base-text{
     font-size: 12px;

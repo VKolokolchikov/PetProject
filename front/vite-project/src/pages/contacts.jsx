@@ -10,7 +10,7 @@ const ContactsPage = () => {
     return (
         <div>
             <SubHeader text={"Контакты"} img={baseBannerImg}/>
-            <div className={'main-content'}>
+            <div className="content-block">
                 <Contacts />
                 <Callback />
                 <Specialist />

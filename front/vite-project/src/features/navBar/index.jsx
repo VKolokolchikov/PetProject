@@ -10,29 +10,27 @@ import {Link, useLocation} from "react-router-dom";
 
 
 const NavigationBar = () => {
+    const [expanded, setExpanded] = useState(false)
     const [furniture, setFurniture] = useState([])
     const location = useLocation()
-    console.log(location.pathname)
 
     const [fetchFurniture, isPostsLoading, postError] = useFetching(async () => {
                 const response = await FurnitureService.getAllTypes();
                 console.log(response)
                 setFurniture(prevState => ([...response.data.results]))
             })
-            useEffect(() => {
-                fetchFurniture()
-            }, []
-            )
-
-
+    useEffect(() => {
+        fetchFurniture()
+    }, []
+    )
 
     return (
-        <Navbar style={{zIndex:1000}} expand="lg">
+        <Navbar expanded={expanded} style={{zIndex:1000}} expand="lg">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={() => setExpanded(false)}>
             <img src={logo} width="198px" alt="logo"/>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setExpanded(expanded ? false : "expanded")}/>
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto justify-content-around flex-grow-1 my-2 my-lg-0"
@@ -47,9 +45,10 @@ const NavigationBar = () => {
                 {furniture
                     && furniture?.map(furnitureItem =>
                         <NavDropdown.Item
-                            key={furnitureItem.slug}
+                            eventKey={furnitureItem.slug}
                             as={Link} to={{pathname: `/catalog/${furnitureItem.slug}`}}
                             className={"text-black base-header nav-dropbox-link"}
+                            onClick={() => setExpanded(false)}
                         >
                             {furnitureItem.title}
 
@@ -61,6 +60,7 @@ const NavigationBar = () => {
                 className={`base-header ${location.pathname.includes("/about") && "active-link"}`}
                 style={{margin: "0 16px"}}
                 as={Link} to="/about"
+                onClick={() => setExpanded(false)}
             >
                 О нас
             </Nav.Link>
@@ -68,6 +68,7 @@ const NavigationBar = () => {
                 className={`base-header ${location.pathname.includes("/delivery") && "active-link"}`}
                 style={{margin: "0 16px"}}
                 as={Link} to="/delivery"
+                onClick={() => setExpanded(false)}
             >
                 Доставка
             </Nav.Link>
@@ -75,6 +76,7 @@ const NavigationBar = () => {
                 className={`base-header ${location.pathname.includes("/contacts") && "active-link"}`}
                 style={{margin: "0 16px"}}
                 as={Link} to="/contacts"
+                onClick={() => setExpanded(false)}
             >
                 Контакты
             </Nav.Link>

@@ -23,13 +23,13 @@ const FAQItem = ({item}) => {
 
     return (
         <div className={"faq-section"}>
-            <div className="faq-section__header">
+            <div className="faq-section__header" onClick={() => openCloseAnswer(item.id)}>
                 <div className="faq-header-title">
                     <BaseImg className="faq-header-title__img"
                          src={item.image}
                          alt={item.title}
                     />
-                    <h1 className={"faq-header-title__text base-header"}>
+                    <h1 className={"base-header faq-header-title__text"}>
                         {item.title}
                     </h1>
                 </div>
@@ -37,7 +37,6 @@ const FAQItem = ({item}) => {
                     className={"arrow-action"}
                     src={arrowImg}
                     alt={"open/close"}
-                    onClick={() => openCloseAnswer(item.id)}
                 />
 
             </div>

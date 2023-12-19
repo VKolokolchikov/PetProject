@@ -9,9 +9,11 @@ const DeliveryPage = () => {
     return (
         <div>
             <SubHeader img={deliveryImg} text={"Доставка"}/>
-            <DeliveryBlock />
-            <Callback />
-            <Specialist />
+            <div className="content-block">
+                <DeliveryBlock />
+                <Callback />
+                <Specialist />
+            </div>
         </div>
     );
 };
