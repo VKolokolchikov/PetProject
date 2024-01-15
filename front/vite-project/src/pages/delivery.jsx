@@ -1,7 +1,7 @@
 import React from 'react';
 import SubHeader from "../features/subHeader/index.jsx";
 
-import deliveryImg from "../assets/delivery.png"
+import deliveryImg from "../assets/delivery.jpg"
 import DeliveryBlock from "../features/delivery";
 import Callback from "../features/callback/index.jsx";
 import Specialist from "../features/specialist/index.jsx";

@@ -25,5 +25,9 @@
     margin: 0 auto 30px;
     padding: 10px 20px;
     height: 300px;
+
+    &__img {
+    max-width: 250px
+  }
   }
 }

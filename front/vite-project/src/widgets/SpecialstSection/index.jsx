@@ -16,7 +16,7 @@ const SpecialistSection = () => {
         <div className="d-flex align-items-center specialist-block main-background ">
                 <img className={"specialist-block__img"} src={specialist} alt={"специалист"}/>
                 <div className="specialist-content-block">
-                    <h2 className={"base-header"}> Пригласить на бесплатную консультацию замерщика </h2>
+                    <h2 className={"base-header"}> Заказать дистанционный просчет специалиста </h2>
                     <BaseButton
                         onClick={() => setModalShow(true)}
                         classesBtn={["additional-bg base-btn callback-btn base-header"]}

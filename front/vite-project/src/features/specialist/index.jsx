@@ -9,7 +9,7 @@ const Specialist = () => {
 
     return (
         <div>
-            <BaseTitle text={"вызов специалиста"}/>
+            <BaseTitle text={"просчет специалиста"}/>
             <SpecialistSection/>
         </div>
     );
