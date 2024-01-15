@@ -1,20 +1,24 @@
 from apps.notifications.constance import NotificationsTypes, CHANNELS
 from apps.notifications.models import SystemUserNotifications
+from apps.services.message_utils.text_formatter import TextFormatterHelper
+from apps.services.message_utils.recipients import RecipientsHelper
 
 
 NOTIFICATION_DATA = [
     {
         "notification_type": NotificationsTypes.CALL_BACK,
-        "template": f"Пользователь <b>{{{SystemUserNotifications.VAR_USER_FIO}}}</b> оставил заявку на обратный звонок. "
-                    f"Контактны данные: <code>{{{SystemUserNotifications.VAR_USER_PHONE}}}</code>",
-        "recipients": SystemUserNotifications.RECIPIENTS_MANAGERS,
+        "template": f"Пользователь <b>{{{TextFormatterHelper.VAR_USER_FIO}}}</b> "
+                    f"оставил заявку на обратный звонок. "
+                    f"Контактны данные: <code>{{{TextFormatterHelper.VAR_USER_PHONE}}}</code>",
+        "recipients": RecipientsHelper.RECIPIENTS_MANAGERS,
         "channel": CHANNELS.TELEGRAM,
     },
-{
+    {
         "notification_type": NotificationsTypes.CALL_MASTER,
-        "template": f"Пользователь <b>{{{SystemUserNotifications.VAR_USER_FIO}}}</b> хочет, вызвать специалиста для замеров. "
-                    f"Контактные данные: <code>{{{SystemUserNotifications.VAR_USER_PHONE}}}</code>",
-        "recipients": SystemUserNotifications.RECIPIENTS_MANAGERS,
+        "template": f"Пользователь <b>{{{TextFormatterHelper.VAR_USER_FIO}}}</b> "
+                    f"хочет заказать дистанционный просчет специалиста. "
+                    f"Контактные данные: <code>{{{TextFormatterHelper.VAR_USER_PHONE}}}</code>",
+        "recipients": RecipientsHelper.RECIPIENTS_MANAGERS,
         "channel": CHANNELS.TELEGRAM,
     },
 ]
