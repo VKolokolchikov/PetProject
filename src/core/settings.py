@@ -181,23 +181,22 @@ if USE_S3:
         "staticfiles": {"BACKEND": "storages.backends.s3boto3.S3StaticStorage"}
     }
 
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_QUERYSTRING_AUTH')
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = 'static'
-    AWS_QUERYSTRING_AUTH = ~(os.getenv('AWS_QUERYSTRING_AUTH') == 'False')
-
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_QUERYSTRING_AUTH = os.getenv('AWS_QUERYSTRING_AUTH') == 'True'
+    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
     BOTO3_ENDPOINT_URL = os.getenv('BOTO3_ENDPOINT_URL')
     AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
-    AWS_S3_USE_SSL = os.getenv('AWS_QUERYSTRING_AUTH') == 'True'
-    # AWS_S3_CUSTOM_DOMAIN = '{}/{}/'.format(AWS_S3_HOST, AWS_STORAGE_BUCKET_NAME)
-    AWS_PUBLIC_MEDIA_LOCATION = 'media'
-
+    AWS_S3_USE_SSL = os.getenv('AWS_S3_USE_SSL') == 'True'
+    AWS_PUBLIC_MEDIA_LOCATION = os.getenv('AWS_PUBLIC_MEDIA_LOCATION')
+    AWS_PUBLIC_STATIC_LOCATION = os.getenv('AWS_PUBLIC_STATIC_LOCATION')
 else:
-    STATIC_URL = '/staticfiles/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
+STATIC_URL = '/staticfiles/'
+MEDIA_URL = '/mediafiles/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
