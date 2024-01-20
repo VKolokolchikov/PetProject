@@ -26,12 +26,19 @@
 
 @media (max-width: 540px) {
   .base-header-block {
-      &__title {
-    position: relative;
-    top: -65%;
+    position: initial;
+    height: auto;
+    &__img > img {
+      object-fit: scale-down;
+      width: 100%;
+      height: auto;
+    }
+    &__title {
+      position: initial;
+
       & > h2 {
         font-size: 30px;
       }
-   }
+    }
   }
 }

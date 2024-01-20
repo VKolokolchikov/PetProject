@@ -11,6 +11,7 @@ import DetailBlock from "./itemDetail";
 const CatalogPage = () => {
     const params = useParams();
     const [furnitureData, setFurnitureData] = useState({items: []})
+    const [showLoader, setShowLoader] = useState(true)
     const {slug, id}  = params;
 
 
@@ -18,16 +19,18 @@ const CatalogPage = () => {
     const [fetchFurniture, isLoading] = useFetching(async () => {
         const response = await FurnitureService.getBySlug(slug);
         setFurnitureData(prevState => ({...response.data}))
+        setShowLoader(isLoading)
         })
 
     useEffect(() => {
+        setShowLoader(true)
         fetchFurniture()
     }, [slug]
     )
 
     return (
         <div>
-             {!isLoading
+             {!showLoader
                 ?
                  <div>
                      <BaseHeader img={furnitureData.banner} title={furnitureData.title}/>

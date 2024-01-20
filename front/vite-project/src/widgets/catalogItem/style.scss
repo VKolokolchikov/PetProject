@@ -5,10 +5,11 @@
 
   padding: 30px 40px;
   margin: 0 40px 30px;
-  max-width: 400px;
+  width: 400px;
   height: 400px;
   background: #FBFAFA;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  word-break: break-word;
 
   &__img {
     max-width: 290px
@@ -25,6 +26,7 @@
     margin: 0 auto 30px;
     padding: 10px 20px;
     height: 300px;
+    width: 300px;
 
     &__img {
     max-width: 250px

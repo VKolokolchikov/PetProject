@@ -11,7 +11,7 @@ export default class FurnitureService {
     }
 
     static async getBySlug(slug) {
-        const response = await BaseService.getBySlug(API_ROUTES.furniture, slug);
+        const response = await BaseService.getBySlug(API_ROUTES.furniture, `${slug}/`);
         return response;
     }
     static async getAllTypes() {

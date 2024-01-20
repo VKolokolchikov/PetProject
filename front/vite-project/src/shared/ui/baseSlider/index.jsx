@@ -19,7 +19,6 @@ const BaseSlider = ({items, section, toFullScreen=false}) => {
     const [modalShow, setModalShow] = React.useState(false);
 
     function openInModalForm(e) {
-        console.log(e);
         setModalShow(true)
     }
 

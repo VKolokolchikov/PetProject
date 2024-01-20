@@ -2,10 +2,11 @@ import React from 'react';
 import {BASE_URL} from "../../../api/apiRoutes.js"
 
 const BaseImg = ({src, ...props}) => {
-    console.log(BASE_URL + "sadSAdads")
+    console.log(src)
+    const url_img = src.startsWith('http')  ? src : BASE_URL + src
     return (
         <img
-            src={BASE_URL + src}
+            src={url_img}
             {...props}
     />
     );

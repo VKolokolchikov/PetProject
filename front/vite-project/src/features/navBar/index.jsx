@@ -16,7 +16,6 @@ const NavigationBar = () => {
 
     const [fetchFurniture, isPostsLoading, postError] = useFetching(async () => {
                 const response = await FurnitureService.getAllTypes();
-                console.log(response)
                 setFurniture(prevState => ([...response.data.results]))
             })
     useEffect(() => {

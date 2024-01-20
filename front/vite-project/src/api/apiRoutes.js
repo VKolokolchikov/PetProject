@@ -1,7 +1,6 @@
 let BASE_URL;
 let API_URL;
 
-console.log(window.location.origin)
 if (window.location.origin === "http://localhost:5173") {
     BASE_URL = import.meta.env.VITE_REACT_APP_URL_BASE;
 } else {
@@ -9,7 +8,6 @@ if (window.location.origin === "http://localhost:5173") {
 }
 
 API_URL = BASE_URL + '/api/'
-console.log("!!!!!" + API_URL)
 const URLs = {
     comments: API_URL + import.meta.env.VITE_REACT_APP_URL_COMMENTS,
     furniture: API_URL + import.meta.env.VITE_REACT_APP_URL_CATALOG,
