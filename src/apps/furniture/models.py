@@ -43,7 +43,7 @@ class Furniture(DateTimeMixin):
         null=True
     )
 
-    describe = models.CharField(verbose_name='Описание', max_length=255, null=True)
+    describe = models.TextField(verbose_name='Описание', null=True)
     is_actual = models.BooleanField(verbose_name='Активность позиции', default=True)
 
     image = GenericRelation(

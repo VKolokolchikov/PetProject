@@ -21,6 +21,19 @@ NOTIFICATION_DATA = [
         "recipients": RecipientsHelper.RECIPIENTS_MANAGERS,
         "channel": CHANNELS.TELEGRAM,
     },
+    {
+        "notification_type": NotificationsTypes.CALL_BACK,
+        "template": f"Заявка на обратный звонок от  "
+                    f"{{{TextFormatterHelper.VAR_USER_FIO}}} [ТЕСТИРОВАНИЕ !!!]",
+        "channel": CHANNELS.AMOCRM,
+    },
+    {
+        "notification_type": NotificationsTypes.CALL_MASTER,
+        "template": f"Заказать на дистанционный просчет специалиста для  "
+                    f"{{{TextFormatterHelper.VAR_USER_FIO}}} [ТЕСТИРОВАНИЕ !!!]",
+        "channel": CHANNELS.AMOCRM,
+    }
+
 ]
 
 

@@ -40,7 +40,7 @@ class NotificationsTypes:
         CALL_MASTER: 'Заявка на вызов мастера',
     }
 
-    CHOICE = (
+    CHOICES = (
         (CALL_BACK, TITLES[CALL_BACK]),
         (CALL_MASTER, TITLES[CALL_MASTER])
     )
@@ -53,4 +53,14 @@ class Recipients:
 
 class CHANNELS:
     TELEGRAM = 1
+    AMOCRM = 999
 
+    TITLES = {
+        TELEGRAM: "Telegram",
+        AMOCRM: "Amocrm",
+    }
+
+    CHOICES = (
+        (TELEGRAM, TITLES[TELEGRAM]),
+        (AMOCRM, TITLES[AMOCRM])
+    )

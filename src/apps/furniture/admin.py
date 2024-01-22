@@ -1,3 +1,5 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
@@ -36,6 +38,14 @@ class FurnitureTypesAdmin(admin.ModelAdmin):
     get_image.short_description = 'Лого'
 
 
+class FurnitureForm(forms.ModelForm):
+    describe = forms.CharField(label='Содержимое страницы', widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Furniture
+        fields = '__all__'
+
+
 @admin.register(Furniture)
 class FurnitureAdmin(admin.ModelAdmin):
     list_display = ('title',)
@@ -46,4 +56,5 @@ class FurnitureAdmin(admin.ModelAdmin):
         ('Описание', {'fields': ('describe', 'is_actual')}),
     )
 
+    form = FurnitureForm
     inlines = [ImageInline]

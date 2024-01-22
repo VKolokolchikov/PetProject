@@ -4,6 +4,7 @@ from django.db import transaction
 from rest_framework.generics import CreateAPIView
 from rest_framework.throttling import AnonRateThrottle
 
+from apps.integrations.amocrm.tasks import create_complex_leads
 from apps.notifications.serializers import NotificationSerializer
 from apps.tasks.send_message import notify_task
 from apps.notifications.constance import NotificationsTypes, StaffRequestType
@@ -32,6 +33,13 @@ class NotificationAPIView(CreateAPIView):
                 notify_task,
                 self.NOTIFICATION_TYPE_MAP[obj.request_type],
                 obj._meta.label,
+                obj.id
+            )
+        )
+        transaction.on_commit(
+            partial(
+                create_complex_leads,
+                obj.request_type,
                 obj.id
             )
         )

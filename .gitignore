@@ -5,3 +5,7 @@
 front/.idea/*
 cert/*
 src/mediafiles/*
+
+# tokens
+*access_token.txt
+*refresh_token.txt

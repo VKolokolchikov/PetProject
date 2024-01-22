@@ -14,6 +14,7 @@ import pathlib
 from pathlib import Path
 
 import environ
+
 from core.ckeditor_conf import CKEDITOR_CONF
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +81,7 @@ if not CORS_ALLOW_ALL_ORIGINS:
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'project/src/templates']
+        'DIRS': [BASE_DIR / 'src/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -199,6 +200,16 @@ STATIC_URL = '/staticfiles/'
 MEDIA_URL = '/mediafiles/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+
+# AMOCRM
+AMOCRM_SUBDOMAIN = os.getenv('AMOCRM_SUBDOMAIN')
+AMOCRM_CLIENT_ID = os.getenv('AMOCRM_CLIENT_ID')
+AMOCRM_CLIENT_SECRET = os.getenv('AMOCRM_CLIENT_SECRET')
+AMOCRM_REDIRECT_URL = os.getenv('AMOCRM_REDIRECT_URL')
+AMOCRM_SECRET_CODE = os.getenv('AMOCRM_SECRET_CODE')
+
+
+# CKEDITOR
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = CKEDITOR_CONF
 

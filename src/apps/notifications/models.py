@@ -2,7 +2,7 @@ from django.db import models
 
 from apps.commons.models import DateTimeMixin
 from apps.commons.validators import phone_validator
-from apps.notifications.constance import StaffRequestType, NotificationsTypes,CHANNELS
+from apps.notifications.constance import StaffRequestType, NotificationsTypes, CHANNELS
 from apps.users.models import SystemUser, RolesInSystem, ContactsUser
 
 
@@ -22,7 +22,14 @@ class Notifications(DateTimeMixin):
 
 class SystemUserNotifications(models.Model):
 
-    notification_type = models.CharField(verbose_name='Тип заявки', max_length=50, choices=NotificationsTypes.CHOICE)
-    template = models.CharField(verbose_name="Шаблон сообщения", max_length=150)
-    recipients = models.CharField(max_length=128)
-    channel = models.IntegerField(verbose_name="Канал")
+    class Meta:
+        verbose_name = 'Систмные оповещения'
+        verbose_name_plural = 'Систмное оповещение'
+
+    notification_type = models.CharField(verbose_name='Тип заявки', max_length=50, choices=NotificationsTypes.CHOICES)
+    template = models.TextField(verbose_name="Шаблон сообщения",)
+    recipients = models.CharField(max_length=128, blank=True, null=True)
+    channel = models.IntegerField(verbose_name="Канал", choices=CHANNELS.CHOICES)
+
+    def __str__(self):
+        return f"{NotificationsTypes.TITLES[self.notification_type]} - {CHANNELS.TITLES[self.channel]}"

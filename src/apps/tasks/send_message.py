@@ -13,6 +13,9 @@ def notify_task(notification_type, model_label, instance_id):
         return
 
     instance = instance_model.objects.get(id=instance_id)
-    notifications = SystemUserNotifications.objects.filter(notification_type=notification_type)
+    notifications = SystemUserNotifications.objects.filter(
+        notification_type=notification_type,
+        recipients__isnull=False,
+    )
 
     NotificationProcessor.notify(notifications=notifications, obj=instance)
