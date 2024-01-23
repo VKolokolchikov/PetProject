@@ -2,7 +2,7 @@ from django.db import models
 
 from apps.commons.models import DateTimeMixin
 from apps.commons.validators import phone_validator
-from apps.notifications.constance import StaffRequestType, NotificationsTypes, CHANNELS
+from apps.notifications.constance import StaffRequestType, NotificationsTypes, CHANNELS, Recipients
 from apps.users.models import SystemUser, RolesInSystem, ContactsUser
 
 
@@ -28,7 +28,7 @@ class SystemUserNotifications(models.Model):
 
     notification_type = models.CharField(verbose_name='Тип заявки', max_length=50, choices=NotificationsTypes.CHOICES)
     template = models.TextField(verbose_name="Шаблон сообщения",)
-    recipients = models.CharField(max_length=128, blank=True, null=True)
+    recipients = models.CharField(max_length=128, choices=Recipients.CHOICES, blank=True, null=True)
     channel = models.IntegerField(verbose_name="Канал", choices=CHANNELS.CHOICES)
 
     def __str__(self):

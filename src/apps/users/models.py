@@ -40,11 +40,13 @@ class RolesInSystem(models.Model):
     MANAGER = "manager"
     HR = "hr"
     SPECIALIST = "specialist"
+    DEVELOPER = "developer"
 
     ROLES_CHOICE = (
         (MANAGER, "Менеджер"),
         (HR, "HR"),
-        (SPECIALIST, "Специалист по замерам")
+        (SPECIALIST, "Специалист по замерам"),
+        (DEVELOPER, "Разработчик"),
     )
 
     role = models.CharField(verbose_name="Роль", choices=ROLES_CHOICE, max_length=64)

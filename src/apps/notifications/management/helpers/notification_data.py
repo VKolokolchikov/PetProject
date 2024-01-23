@@ -1,7 +1,6 @@
-from apps.notifications.constance import NotificationsTypes, CHANNELS
+from apps.notifications.constance import NotificationsTypes, CHANNELS, Recipients
 from apps.notifications.models import SystemUserNotifications
 from apps.services.message_utils.text_formatter import TextFormatterHelper
-from apps.services.message_utils.recipients import RecipientsHelper
 
 
 NOTIFICATION_DATA = [
@@ -10,7 +9,7 @@ NOTIFICATION_DATA = [
         "template": f"Пользователь <b>{{{TextFormatterHelper.VAR_USER_FIO}}}</b> "
                     f"оставил заявку на обратный звонок. "
                     f"Контактны данные: <code>{{{TextFormatterHelper.VAR_USER_PHONE}}}</code>",
-        "recipients": RecipientsHelper.RECIPIENTS_MANAGERS,
+        "recipients": Recipients.RECIPIENTS_MANAGERS,
         "channel": CHANNELS.TELEGRAM,
     },
     {
@@ -18,7 +17,7 @@ NOTIFICATION_DATA = [
         "template": f"Пользователь <b>{{{TextFormatterHelper.VAR_USER_FIO}}}</b> "
                     f"хочет заказать дистанционный просчет специалиста. "
                     f"Контактные данные: <code>{{{TextFormatterHelper.VAR_USER_PHONE}}}</code>",
-        "recipients": RecipientsHelper.RECIPIENTS_MANAGERS,
+        "recipients": Recipients.RECIPIENTS_MANAGERS,
         "channel": CHANNELS.TELEGRAM,
     },
     {
@@ -33,7 +32,6 @@ NOTIFICATION_DATA = [
                     f"{{{TextFormatterHelper.VAR_USER_FIO}}} [ТЕСТИРОВАНИЕ !!!]",
         "channel": CHANNELS.AMOCRM,
     }
-
 ]
 
 

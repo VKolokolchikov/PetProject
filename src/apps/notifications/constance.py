@@ -47,8 +47,17 @@ class NotificationsTypes:
 
 
 class Recipients:
-    MANAGERS = "managers"
-    ADMINS = "admins"
+    RECIPIENTS_MANAGERS = 'managers'
+    RECIPIENTS_DEVELOPERS = 'developers'
+    RECIPIENTS_HRS = 'hrs'
+    RECIPIENTS_SPECIALISTS = 'specialists'
+
+    CHOICES = (
+        (RECIPIENTS_MANAGERS, "Менеджеры"),
+        (RECIPIENTS_DEVELOPERS, "Разработчики"),
+        (RECIPIENTS_HRS, "HR-специалисты"),
+        (RECIPIENTS_SPECIALISTS, "Специалистам"),
+    )
 
 
 class CHANNELS:
