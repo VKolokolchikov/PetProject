@@ -24,4 +24,3 @@ RUN pip install psycopg2
 
 # copy project
 COPY . /usr/src/app/
-RUN echo $PWD
