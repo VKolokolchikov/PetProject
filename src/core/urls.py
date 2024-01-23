@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 system_urls = [
-    path('admin/', admin.site.urls),
+    path('work/administration/', admin.site.urls),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
